@@ -1,210 +1,311 @@
-# customer-segmentation-rfm
-Customer Segmentation and Retention Analysis using RFM and Cohort Analysis with Python, Pandas, and Seaborn.
-Customer Segmentation and Retention Analysis using RFM and Cohort Analysis
+Customer Churn Prediction
 Project Overview
+Customer churn refers to customers discontinuing a product or service. Predicting churn is important for businesses because retaining existing customers is more cost-effective than acquiring new customers.
+This project focuses on building a Customer Churn Prediction System using Machine Learning techniques to identify customers who are likely to leave a service. The project includes data preprocessing, exploratory data analysis (EDA), feature engineering, handling class imbalance using SMOTE, model training, evaluation, and business insights generation.
+The objective of this project is to help businesses proactively identify high-risk customers and improve customer retention strategies.
 
-This project focuses on analyzing customer purchasing behavior using RFM (Recency, Frequency, Monetary) Analysis and Cohort Analysis. The goal is to segment customers based on their transaction patterns and analyze customer retention trends over time.
+Problem Statement
+The goal of this project is to predict whether a customer is likely to churn based on customer demographics, service usage patterns, payment behavior, and customer interaction history.
+By accurately identifying at-risk customers, businesses can:
 
-By applying these analytical techniques, businesses can identify high-value customers, understand purchasing behavior, and develop strategies to improve customer retention and marketing effectiveness.
 
-The analysis is performed using Python libraries such as Pandas, NumPy, Matplotlib, and Seaborn.
+Reduce customer churn
+
+
+Improve customer retention
+
+
+Increase customer lifetime value
+
+
+Optimize marketing and engagement strategies
+
+
 
 Dataset Description
+The dataset contains customer information related to subscription services and customer behavior.
+Features Used
 
-The dataset used in this project is the Online Retail Dataset.
 
-It contains transactional data from an online retail store.
+CustomerID
 
-Key Columns in Dataset
-Column	Description
-InvoiceNo	Unique invoice number
-StockCode	Product code
-Description	Product description
-Quantity	Number of products purchased
-InvoiceDate	Date and time of purchase
-UnitPrice	Price of each product
-CustomerID	Unique customer identifier
-Country	Customer location
-Data Preprocessing
 
-Before performing analysis, the dataset was cleaned and processed.
+Age
 
-Steps Performed
+
+Gender
+
+
+Tenure
+
+
+Usage Frequency
+
+
+Support Calls
+
+
+Payment Delay
+
+
+Subscription Type
+
+
+Contract Length
+
+
+Total Spend
+
+
+Last Interaction
+
+
+Churn (Target Variable)
+
+
+Target Variable
+
+
+0 → Customer Retained
+
+
+1 → Customer Churned
+
+
+
+Project Workflow
+1. Data Preprocessing
+Several preprocessing steps were performed before model training:
+
 
 Removed missing values
 
-Rows with missing CustomerID were removed.
 
-Removed cancelled transactions
+Encoded categorical variables
 
-Invoice numbers starting with 'C' represent cancelled orders.
 
-Converted data types
+Applied feature scaling using StandardScaler
 
-Converted InvoiceDate to datetime format.
 
-Created Total Purchase Value
+Performed feature engineering
 
-Total Price = Quantity × UnitPrice
 
-Removed negative or invalid values
+Split dataset into training and testing sets
 
-Negative quantities or prices were excluded.
 
-Exploratory Data Analysis (EDA)
 
-EDA was conducted to understand customer purchasing behavior.
+2. Exploratory Data Analysis (EDA)
+EDA was performed to understand customer behavior and identify important churn patterns.
+Key Findings
 
-Key Observations
 
-Most customers come from United Kingdom.
+Customers with low usage frequency are more likely to churn
 
-Certain months show higher purchase activity, indicating seasonal trends.
 
-Some customers purchase frequently with high spending, while others buy only once.
+Customers with short tenure have higher churn probability
 
-Visualization techniques used:
 
-Distribution plots
+Frequent support calls indicate customer dissatisfaction
 
-Bar charts
 
-Heatmaps
+Payment delays strongly correlate with churn behavior
 
-Time-series purchase trends
 
-Libraries used:
+Visualizations Used
 
-Matplotlib
 
-Seaborn
+Churn distribution plots
 
-RFM Analysis
 
-RFM stands for:
+Correlation heatmaps
 
-Recency (R) → How recently a customer made a purchase
 
-Frequency (F) → How often a customer purchases
+Boxplots
 
-Monetary (M) → How much money a customer spends
 
-RFM Calculation
+Feature importance graphs
 
-Recency = Current Date – Last Purchase Date
 
-Frequency = Number of purchases made by the customer
+Confusion matrix
 
-Monetary = Total amount spent by the customer
 
-Each metric is scored using quantile-based ranking (1–5 scale).
 
-Higher scores represent better customer engagement and value.
+Handling Class Imbalance using SMOTE
+The dataset contained class imbalance, which can negatively affect machine learning performance.
+To solve this issue, SMOTE (Synthetic Minority Oversampling Technique) was applied to the training dataset.
+SMOTE generates synthetic samples of the minority class to create a balanced dataset and improve model learning.
+Benefits of SMOTE:
 
-Customer Segmentation
 
-Based on RFM scores, customers are grouped into segments such as:
+Improves recall and F1-score
 
-Segment	Description
-Champions	Recently purchased, frequent buyers, high spending
-Loyal Customers	Frequent buyers with consistent purchases
-Potential Loyalists	Recent customers with moderate purchases
-At Risk	Customers who haven't purchased recently
-Lost Customers	Customers inactive for a long time
 
-These segments help businesses design targeted marketing campaigns.
+Reduces model bias toward majority class
 
-Cohort Analysis
 
-Cohort Analysis groups customers based on their first purchase date and tracks their purchasing behavior over time.
+Enhances churn detection capability
 
-Cohort Definition
 
-A cohort is a group of customers who made their first purchase in the same month.
 
-Example:
+Machine Learning Models Used
+K-Nearest Neighbors (KNN)
+KNN predicts churn based on the nearest neighboring data points using distance calculations.
+Random Forest
+Random Forest combines multiple decision trees to improve prediction accuracy and reduce overfitting.
+XGBoost
+XGBoost is an advanced boosting algorithm that improves model performance using gradient boosting techniques.
 
-Customers who first purchased in January 2011 belong to the January cohort.
+Model Evaluation
+The models were evaluated using the following metrics:
 
-Retention Rate Calculation
 
-Retention measures how many customers return to make repeat purchases.
+Accuracy
 
-Retention Rate = (Customers Active in Period / Customers in First Cohort Month)
 
-This is visualized using a cohort retention table and heatmap.
+Precision
 
-Cohort Visualization
 
-Cohort heatmaps show:
+Recall
 
-Customer retention across months
 
-Decline or growth in returning customers
+F1-score
 
-Insights from cohort visualization:
 
-Many customers purchase once and do not return
+ROC-AUC Score
 
-A smaller group of customers shows consistent repeat purchasing behavior
+
+Confusion Matrix
+
+
+Final Model Selection
+The Random Forest model was finalized because it achieved the best balance between accuracy, precision, recall, and ROC-AUC score.
+Final Random Forest Performance
+MetricScoreAccuracy84%Precision82%Recall78%F1-score80%ROC-AUC0.87
 
 Tools and Libraries Used
+Programming Language
+
 
 Python
 
+
+Libraries
+
+
 Pandas
+
 
 NumPy
 
+
 Matplotlib
+
 
 Seaborn
 
+
+Scikit-learn
+
+
+Imbalanced-learn
+
+
+Development Environment
+
+
 Jupyter Notebook
 
+
+VS Code
+
+
+
 Key Business Insights
-1. High-Value Customers
+High Churn Risk Customers
+Customers with:
 
-Customers classified as Champions and Loyal Customers generate a large portion of revenue.
 
-Strategy:
-Provide loyalty rewards and personalized offers.
+low usage frequency
 
-2. At-Risk Customers
 
-Customers who have not purchased recently but had good past purchase behavior.
+short subscription tenure
 
-Strategy:
-Use email campaigns, discounts, or reminders to re-engage them.
 
-3. One-Time Buyers
+frequent support calls
 
-A large portion of customers purchase only once.
 
-Strategy:
-Offer follow-up promotions or recommendations to encourage repeat purchases.
+payment delays
 
-4. Retention Trends
 
-Cohort analysis shows retention decreases over time.
+were identified as high-risk customers.
 
-Strategy:
-Improve customer experience, product recommendations, and loyalty programs.
+Business Recommendations
+1. Improve Customer Engagement
+Provide personalized recommendations and offers to low-usage customers.
+2. Enhance Customer Support
+Improve issue resolution speed to reduce dissatisfaction.
+3. Offer Retention Campaigns
+Provide discounts or loyalty rewards for at-risk customers.
+4. Encourage Long-Term Contracts
+Promote annual subscription plans to improve customer retention.
 
-Business Value of This Project
-
+Business Value of the Project
 This solution helps businesses:
 
-Identify high-value customers
 
-Improve customer retention strategies
+Predict customer churn proactively
 
-Understand customer purchase behavior
 
-Optimize marketing campaigns
+Improve retention strategies
 
-Increase customer lifetime value (CLV)
+
+Reduce revenue loss
+
+
+Increase customer lifetime value
+
+
+Support data-driven business decisions
+
+
 
 Conclusion
+This project demonstrates how machine learning can be used to predict customer churn and support customer retention strategies.
+By combining:
 
-By combining RFM segmentation and Cohort Analysis, businesses gain deeper insights into customer behavior and retention patterns.
+
+Data preprocessing
+
+
+EDA
+
+
+SMOTE
+
+
+Feature scaling
+
+
+Machine learning models
+
+
+the system effectively identifies customers likely to churn and provides actionable business insights.
+
+Future Improvements
+Future enhancements may include:
+
+
+Hyperparameter tuning
+
+
+Deep Learning models
+
+
+Real-time churn prediction dashboards
+
+
+Model deployment using Streamlit or Flask
+
+
+Integration with business CRM systems
+
