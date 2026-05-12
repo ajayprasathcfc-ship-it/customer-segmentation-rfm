@@ -81,13 +81,15 @@ The models were evaluated using the following metrics:
 •	Confusion Matrix 
 Final Model Selection
 The Random Forest model was finalized because it achieved the best balance between accuracy, precision, recall, and ROC-AUC score.
-Final Random Forest Performance
-Metric	Score
-Accuracy	  84%
-Precision 	82%
-Recall	    78%
-F1-score  	80%
-ROC-AUC	    0.87
+### Final Random Forest Performance
+
+| Metric    | Score |
+|------------|--------|
+| Accuracy   | 84%    |
+| Precision  | 82%    |
+| Recall     | 78%    |
+| F1-score   | 80%    |
+| ROC-AUC    | 0.87   |
 ________________________________________
 Tools and Libraries Used
 Programming Language
